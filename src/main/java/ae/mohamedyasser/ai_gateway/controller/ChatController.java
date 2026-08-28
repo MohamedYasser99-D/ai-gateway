@@ -1,9 +1,8 @@
 package ae.mohamedyasser.ai_gateway.controller;
 
+import ae.mohamedyasser.ai_gateway.models.Message;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ChatController {
@@ -14,10 +13,10 @@ public class ChatController {
         this.chatClient = builder.build();
     }
 
-    @GetMapping("/chat")
-    public String chat(@RequestParam String message) {
+    @PostMapping("/chat")
+    public String chat(@RequestBody Message conv) {
         return chatClient.prompt()
-                .user(message)
+                .user(conv.message)
                 .call()
                 .content();
     }
