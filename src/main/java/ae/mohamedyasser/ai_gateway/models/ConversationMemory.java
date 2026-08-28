@@ -1,5 +1,6 @@
 package ae.mohamedyasser.ai_gateway.models;
 
+import org.springframework.ai.chat.messages.Message;
 import org.springframework.stereotype.Component;
 import java.util.Collections;
 import java.util.ArrayList;
@@ -9,7 +10,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class ConversationMemory {
 
-    private final ConcurrentHashMap<String, List<Message>> conversations = new ConcurrentHashMap<>();
+
+    private final ConcurrentHashMap<String, List<org.springframework.ai.chat.messages.Message>> conversations = new ConcurrentHashMap<>();
 
     public List<Message> getHistory(String conversationId) {
         return conversations.computeIfAbsent(conversationId,
