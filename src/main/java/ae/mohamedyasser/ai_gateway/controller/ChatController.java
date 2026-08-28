@@ -22,7 +22,7 @@ public class ChatController {
         var history = memory.getHistory(conv.conversationId());
         history.add(new UserMessage(conv.message()));
         String reply = chatClient.prompt()
-                .user(conv.message())
+                .messages(history)
                 .call()
                 .content();
         history.add(new AssistantMessage(reply));
